@@ -18,7 +18,7 @@ describe InstancesController do
 
     it "returns the string 'Instance is spinning up'" do
       post :create
-      response.body.should == "Instance is spinning up"
+      response.body.should == "Instance is spinning up\n"
     end
 
     it "returns 200 OK" do
