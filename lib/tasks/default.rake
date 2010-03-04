@@ -4,7 +4,7 @@ Rake.application.instance_variable_get('@tasks').delete('default')
 
 CLEAN.include %w(log/** tmp/** coverage)
 
-task :default => [:clean, :'db:migrate:all'] do
+task :default => :clean do
   reports = ['log/spec.html', 'coverage', 'log/roodi.txt', 'log/features_ok.html',
     'log/features_wip.html', 'log/stats.txt'].map {|f| File.dirname(__FILE__) + '/../../' + f}
 
@@ -16,7 +16,7 @@ task :default => [:clean, :'db:migrate:all'] do
     Rake::Task['spec:verify_rcov'].invoke
     Rake::Task['roodi'].invoke
     ENV['RAILS_ENV'] = 'cucumber'
-    Rake::Task['cucumber:all'].invoke
+    #Rake::Task['cucumber:all'].invoke
     if ENV['USER'] =~ /^cruise/
       Rake::Task[:deploy].invoke
     end
