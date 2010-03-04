@@ -1,10 +1,29 @@
-# set to the name of git remote you intend to deploy to
-set :remote, "deploy"
-# specify the deployment branch
-set :branch, "master"
-# sudo will only be used to create the deployment directory
-set :use_sudo, true
-# the remote host is read automatically from your git remote specification
-server remote_host, :app, :web, :db, :primary => true
+set :application, "spinner_upper"
+set :repository,  "."
+set :user, "rails"
+set :deploy_via, :copy
+set :copy_cache, true
+set :copy_cache, "/tmp/caches/myapp"
+set :copy_exclude, [".git/*", ".svn/*"]
+set :copy_compression, :gzip # Also valid are :zip and :bz2
 
-load File.expand_path("../deploy/common.rb", __FILE__)
+
+set :scm, :git
+# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+
+role :web, "10.249.162.68"                          # Your HTTP server, Apache/etc
+role :app, "10.249.162.68"                          # This may be the same as your `Web` server
+role :db,  "10.249.162.68", :primary => true # This is where Rails migrations will run
+
+# If you are using Passenger mod_rails uncomment this:
+# if you're still using the script/reapear helper you will need
+# these http://github.com/rails/irs_process_scripts
+
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :migrate do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
