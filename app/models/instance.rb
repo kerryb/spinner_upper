@@ -8,6 +8,6 @@ class Instance
     group_name = "default"
     key_name = "team7"
     response = ec2.run_instances image_id, 1, 1, [group_name], key_name
-    RAILS_DEFAULT_LOGGER.debog response.inspect
+    RAILS_DEFAULT_LOGGER.debug response.inspect
   end
 end
