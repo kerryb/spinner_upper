@@ -1,0 +1,25 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: spinner_upper_development
+  username: spinner_upper
+  password:
+
+test: &TEST
+  adapter: postgresql
+  encoding: unicode
+  database: spinner_upper_test
+  username: spinner_upper
+  password:
+
+cucumber:
+  <<: *TEST
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: spinner_upper_production
+  username: spinner_upper
+  password:
+
