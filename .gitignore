@@ -6,7 +6,7 @@ restart.txt
 log/**
 tmp/**
 public/cache/**
-db/schema.rb
+config/environments/production.rb
 TAGS
 coverage
 webrat*html
