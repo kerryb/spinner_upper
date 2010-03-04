@@ -1,11 +1,47 @@
 <html>
-  <head><title>Cloud Capacity Management</title></head>
+  <head>
+    <title>Cloud Capacity Management</title>
+    <style type="text/css">
+      div.info-header, div.info {
+        font-size: 14pt;
+        text-align: center;
+        width: 600px;
+        margin: 0 auto 0 auto;
+        padding: 5px;
+      }
+      div.info-header {
+        background-color: #44f;
+        color: #fff;
+        margin-top: 72px;
+      }
+      div.info {
+        border-bottom: 2px solid #44f;
+        background-color: #ccf;
+      }
+      p.technobabble {
+        color: #888;
+        font-size: 10pt;
+      }
+    </style>
+  </head>
   <body>
-    <p style="font-size:28pt;text-align:center;padding-top:72pt">
-      Instance <em><%= @id %></em> is spinning up.
-    </p>
-    <p style="text-align:center;padding-top:24pt">
-      <%= link_to "Back", "javascript: history.go(-1)" %>
-    </p>
+    <div class="info-header">
+      Cloud Capacity Management
+    </div>
+    <div class="info">
+      <p>
+        To ensure optimum performance, we are increasing the number of
+        virtual servers running your applicaton.
+      </p>
+      <p>
+        This will only take a
+        few minutes, and should be invisible to you.
+      </p>
+      <p class="technobabble">
+        Technobabble: Instance <em><%= @id %></em> currently spinning up.
+      </p>
+      <br />
+      <%= button_to "Back", "javascript: history.go(-1)" %>
+    </div>
   </body>
 </html>
