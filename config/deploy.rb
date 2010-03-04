@@ -6,7 +6,8 @@ set :copy_cache, true
 set :copy_cache, "/tmp/caches/myapp"
 set :copy_exclude, [".git/*", ".svn/*"]
 set :copy_compression, :gzip # Also valid are :zip and :bz2
-
+default_run_options[:pty] = true
+default_run_options[:env] = {"http_proxy" => "http://proxy.intra.bt.com:8080"}
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -31,5 +32,5 @@ end
 task :after_update_code do
   run "ln -nfs #{shared_path}/production.rb #{release_path}/config/environments/production.rb"
   run "cd #{release_path} && ./script/bundle"
-  touch "#{release_path}/tmp/restart.txt"
+  FileUtils.touch "#{release_path}/tmp/restart.txt"
 end
