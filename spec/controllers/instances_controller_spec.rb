@@ -4,6 +4,8 @@ describe InstancesController do
   describe "routing" do
     it {should route(:post, '/instances').to(
       :controller => "instances", :action => :create) }
+    it {should route(:post, '/instances/test').to(
+      :controller => "instances", :action => :test) }
   end
 
   describe "posting to create" do
@@ -16,13 +18,30 @@ describe InstancesController do
       post :create
     end
 
-    it "returns the string 'Instance is spinning up'" do
+    it "renders create.html.erb" do
       post :create
-      response.body.should == "Instance is spinning up\n"
+      response.should render_template "create.html.erb"
     end
 
     it "returns 200 OK" do
       post :create
+      response.response_code.should == 200
+    end
+  end
+
+  describe "getting test" do
+    it "does not spin up a new instance" do
+      Instance.should_not_receive :create
+      get :test
+    end
+
+    it "renders create.html.erb" do
+      get :test
+      response.should render_template "create.html.erb"
+    end
+
+    it "returns 200 OK" do
+      get :test
       response.response_code.should == 200
     end
   end
