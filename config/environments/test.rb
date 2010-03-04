@@ -27,4 +27,6 @@ config.action_mailer.delivery_method = :test
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
 
-  config.gem 'rspec-rails', :version => '>= 1.3.2', :lib => false unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))
+EC2_URL = "http://ec2.example.com/foo"
+ACCESS_KEY = "foo"
+SECRET_KEY = "bar"
