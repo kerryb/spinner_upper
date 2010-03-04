@@ -15,5 +15,15 @@ describe InstancesController do
       Instance.should_receive :create
       post :create
     end
+
+    it "returns the string 'Instance is spinning up'" do
+      post :create
+      response.body.should == "Instance is spinning up"
+    end
+
+    it "returns 200 OK" do
+      post :create
+      response.response_code.should == 200
+    end
   end
 end
