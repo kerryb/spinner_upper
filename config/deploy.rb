@@ -30,6 +30,6 @@ namespace :deploy do
 end
 
 task :after_update_code do
-  run "ln -nfs #{shared_path}/production.rb #{release_path}/config/environments/production.rb"
+  run "ln -nfs #{shared_path}/config/production.rb #{release_path}/config/environments/production.rb"
   run "cd #{release_path} && ./script/bundle"
 end
